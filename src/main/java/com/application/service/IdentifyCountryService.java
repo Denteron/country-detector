@@ -3,6 +3,7 @@ package com.application.service;
 import com.application.domain.CountryEntity;
 import com.application.dto.FindCountryResponse;
 import com.application.repository.CountryRepository;
+import com.application.service.validation.ValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +13,17 @@ import java.util.List;
 @AllArgsConstructor
 public class IdentifyCountryService {
 
-    private CountryRepository repository;
+    private final CountryRepository repository;
+
+    private final ValidationService validationService;
 
     public FindCountryResponse findCountryByPhoneNumber(String number) {
+        var validationResult = validationService.validate(number);
+        if (!validationResult.isEmpty()) {
+            var response = new FindCountryResponse();
+            response.setErrors(validationResult);
+            return response;
+        }
         var result = repository.findWithQuery(number);
         return converter(resultsFilter(result));
     }
