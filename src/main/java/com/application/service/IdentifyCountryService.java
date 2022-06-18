@@ -3,6 +3,7 @@ package com.application.service;
 import com.application.domain.CountryEntity;
 import com.application.dto.FindCountryResponse;
 import com.application.repository.CountryRepository;
+import com.application.service.validation.CoreError;
 import com.application.service.validation.ValidationService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,9 @@ public class IdentifyCountryService {
     public FindCountryResponse findCountryByPhoneNumber(String number) {
         var validationResult = validationService.validate(number);
         if (!validationResult.isEmpty()) {
-            var response = new FindCountryResponse();
-            response.setErrors(validationResult);
-            return response;
+            return response(validationResult);
         }
-        var result = repository.findWithQuery(number);
+        var result = repository.findCountryByCode(number);
         return converter(resultsFilter(result));
     }
 
@@ -34,18 +33,28 @@ public class IdentifyCountryService {
         return response;
     }
 
-    private String resultsFilter (List<CountryEntity> entities) {
+    private String resultsFilter(List<CountryEntity> entities) {
         var maxLengthResult = 0;
         var countryResult = "";
         for (CountryEntity entity : entities) {
-            if (entity.getCode().length() > maxLengthResult) {
+            if (entity.getCode() != null && entity.getCode().length() > maxLengthResult) {
                 maxLengthResult = entity.getCode().length();
                 countryResult = entity.getCountry();
             }
         }
+        if (countryResult.equals("")) {
+            countryResult = "This phone number can't find any country";
+        }
         return countryResult;
-
     }
+
+    private FindCountryResponse response(List<CoreError> errors) {
+        var response = new FindCountryResponse();
+        response.setCountry("Please enter a valid phone number");
+        response.setErrors(errors);
+        return response;
+    }
+
 
 
 }

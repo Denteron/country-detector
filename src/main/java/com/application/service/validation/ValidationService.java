@@ -16,7 +16,7 @@ public class ValidationService {
 
     public List<CoreError> validate(String number) {
         List<CoreError> errors = new ArrayList<>();
-        if (number == null) {
+        if (number.equals(" ")) {
             errors.add(new CoreError("[ You need enter a phone number ]"));
             return errors;
         }
@@ -24,7 +24,6 @@ public class ValidationService {
                 .map(rule -> mapError(rule, number))
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
-
     }
 
     private CoreError mapError(ValidationRule rule, String number) {

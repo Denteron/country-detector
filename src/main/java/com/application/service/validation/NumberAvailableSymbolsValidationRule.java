@@ -9,7 +9,7 @@ public class NumberAvailableSymbolsValidationRule implements ValidationRule {
 
     @Override
     public void validate(String number) {
-        if (!Pattern.matches("(\\+*)[0-9]+", number)) {
+        if (!Pattern.matches("(\\+*)\\d+", number)) {
             throw new ValidationException("[ Please use only [ 0 - 9 ] and [ + ] before phone number ]");
         }
 
