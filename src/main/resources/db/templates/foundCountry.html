@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Result of search</title>
+    <link rel="stylesheet" href="bemStyle.css">
+</head>
+<body>
+<div align="center">
+<table>
+    <thead>
+    <tr>
+        <th> Result </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:action="FindCountryResponse : ${response}">
+        <td><span th:text="${FindCountryResponse.country}"> Country </span></td>
+        <td><span th:text="${FindCountryResponse.errors}"> Errors </span></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+</body>
+</html>

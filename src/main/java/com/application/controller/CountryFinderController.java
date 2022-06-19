@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/find")
 @RequiredArgsConstructor
-public class CountryController {
+public class CountryFinderController {
 
     private final IdentifyCountryService service;
 

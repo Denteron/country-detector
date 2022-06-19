@@ -1,8 +1,6 @@
 
 :root {
-    --defence:  #72aaeb;
-    --attack:   #da6e53;
-    --pass:     #1edf75;
+    --default:  #72aaeb;
 }
 
 .button {
@@ -11,14 +9,6 @@
 }
 
 button:hover {background: gold}
-
-
-/* Размер кнопок выбора */
-.button_sizeNormal      { font-size: normal; }
 .button_sizeLarge       { font-size: large; }
-.button_sizeSmall       { font-size: small; }
+.button_default     { background-color: var(--default) }
 
-/*Цвет кнопок выбора */
-.button_defence     { background-color: var(--defence) }
-.button_attack      { background-color: var(--attack) }
-.button_pass     { background-color: var(--pass) }

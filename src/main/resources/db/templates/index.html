@@ -1,16 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>HTML for CSS Styles</title>
+    <title>Identify Country</title>
     <link rel="stylesheet" href="bemStyle.css">
 </head>
 <body>
-<section class="DefenceButton">
-    <p>Defence Button</p>
-    <button class="button button_sizeNormal button_defence">Defence</button>
-    <button class="button button_sizeLarge button_defence">Defence</button>
-    <button class="button button_sizeSmall button_defence">Defence</button>
-</section>
+<div align="center">
+            <br>
+            <input type="text" placeholder="Please enter phone number:" th:field="*{number}"/>
+            <br>
+        <section class="SearchButton">
+            <p><a href="/ui/find"> Search Country by phone number </a></p>
+            <button type="submit" class="button button_sizeLarge button_default">Search</button>
+        </section>
+
+</div>
 </body>
 </html>
