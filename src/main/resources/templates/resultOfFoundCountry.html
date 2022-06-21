@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Result of search</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+<form>
+    <div align="center">
+        <table>
+            <thead>
+            <tr>
+                <th><h1>Result of Search</h1></th>
+            </tr>
+            </thead>
+            <tbody>
+            <div th:object="${response}">
+                <br>
+                <td><p><span th:text="${response.country}"> Country </span></p></td>
+                <br>
+                <td><span th:text="${response.errors}"> Errors </span></td>
+            </div>
+            <div>
+                <a href="http://localhost:8080/ui">Search again</a>
+            </div>
+            </tbody>
+        </table>
+    </div>
+</form>
+</body>
+</html>
