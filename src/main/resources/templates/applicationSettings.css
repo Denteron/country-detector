@@ -11,5 +11,12 @@ p {
 h1 {
     color: black;
     font-family: Impact;
+    font-size: 150%;
+
+}
+
+h2 {
+    color: black;
+    font-family:  MV Boli;
     font-size: 200%;
 }
